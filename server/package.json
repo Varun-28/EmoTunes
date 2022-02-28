@@ -1,0 +1,29 @@
+{
+  "name": "emotunes-backend",
+  "version": "1.0.0",
+  "description": "EmoTunes - An emotion based music web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Varun-28/EmoTunes.git"
+  },
+  "keywords": [
+    "music",
+    "react",
+    "mern",
+    "emotion-based"
+  ],
+  "author": "Varun Verma and Shilpe Saxena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Varun-28/EmoTunes/issues"
+  },
+  "homepage": "https://github.com/Varun-28/EmoTunes#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
+  }
+}
