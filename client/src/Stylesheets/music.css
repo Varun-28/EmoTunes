@@ -1,0 +1,19 @@
+.choice-container{
+    background-color: var(--light-shadow-color);
+    box-shadow: 6px 6px 8px 1px var(--dark-secondary-color);
+    transition: 0.3s ease-in-out;
+}
+
+.choice-container:hover{
+    transform: scale(1.1);
+}
+
+.choice-container img{
+    height: auto;
+    margin: auto;
+}
+
+.choice-container h4{
+    text-align: center;
+    color: var(--light-bg-color);
+}

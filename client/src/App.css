@@ -1,0 +1,15 @@
+:root{
+    /* colors */
+
+    /* light-theme-colors */
+    --light-bg-color: #FBE5E5;
+    --light-primary-color: #060930;
+    --light-secondary-color: #E60965;
+    --light-shadow-color: #F94892;
+
+    /* dark-theme-colors */
+    --dark-bg-color: #060930;
+    --dark-primary-color: #FBE5E5;
+    --dark-secondary-color: #FFA1C9;
+    --dark-shadow-color: #595B83;
+}

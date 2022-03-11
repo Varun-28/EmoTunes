@@ -1,0 +1,31 @@
+@import url("../App.css");
+
+.pattern-bg{
+    background: no-repeat url('../assets/slanted-gradient.svg');
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.login-signup-form{
+    border-radius: 5px;
+    box-shadow: 4px 4px 8px 2px var(--light-bg-color);
+    color: var(--light-primary-color);
+}
+
+.login-signup-form form{
+    margin: 2rem auto;
+}
+
+.login-signup-btn{
+    background-color: var(--light-secondary-color);
+    box-shadow: 2px 2px 6px 1px var(--light-shadow-color);
+    color: var(--light-bg-color);
+}
+
+.move-text{
+    color: var(--light-secondary-color);
+}
+

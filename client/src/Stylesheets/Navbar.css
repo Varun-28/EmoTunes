@@ -1,0 +1,14 @@
+@import url('./animation.css');
+
+.navbar .nav-link{
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.navbar .nav-link:hover{
+    transform: scale(1.04);
+}
+
+.btn-theme:hover{
+    animation: swing 0.5s ease-in-out;
+}

@@ -1,0 +1,19 @@
+@import url("../App.css");
+
+.hero-btn{
+    width: max-content;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px 1px var(--light-shadow-color);
+    transition: 0.2s ease;
+}
+
+.hero-btn:hover{
+    transform: scale(1.05);
+}
+
+@media screen and (min-width: 768px)  {
+    .hero-section{
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+}
