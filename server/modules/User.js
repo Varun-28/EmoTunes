@@ -22,5 +22,4 @@ const SignupSchema = new Schema({
 });
 
 const User = mongoose.model('signup', SignupSchema);
-User.createIndexes();
 module.exports = User;

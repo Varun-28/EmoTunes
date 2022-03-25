@@ -3,7 +3,8 @@ connectToMongo();
 
 const express = require('express');
 const app = express();
-const port = 5000;
+require("dotenv").config();
+const port = process.env.PORT;
 app.use(express.json());
 
 app.use('/api/auth', require('./routes/auth.js'));
