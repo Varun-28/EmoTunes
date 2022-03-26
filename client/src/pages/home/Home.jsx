@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import heroImg from "../assets/Cassette player-amico.svg";
-import { useTheme } from '../Context/theme-context';
-import "../Stylesheets/home.css";
+import heroImg from "../../assets/Cassette player-amico.svg";
+import { useTheme } from '../../Context/theme-context.js';
+import "./home.css";
 
 function Home() {
 
@@ -20,7 +20,7 @@ function Home() {
             backgroundColor: `${theme.mode.secondaryColor}`,
             color: `${theme.mode.bgColor}`
           }}
-          ><Link to='/music'>Listen Now</Link></button>
+          ><Link to='/choice'>Listen Now</Link></button>
         </div>
         <div>
             <img className='mx-auto w-4/6' src={heroImg} loading="eager" alt='hero' />

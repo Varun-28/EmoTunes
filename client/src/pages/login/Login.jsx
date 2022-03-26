@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { InputField } from './InputField';
-import "../Stylesheets/login-signup.css";
+import { InputField } from '../../components/InputField';
+import "../../Stylesheets/login-signup.css";
 
 function Login() {
   return (
