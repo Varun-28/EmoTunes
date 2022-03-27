@@ -1,0 +1,9 @@
+.capture-container{
+    background-color: var(--light-shadow-color);
+    box-shadow: 6px 6px 8px 1px var(--dark-secondary-color);
+    transition: 0.3s ease-in-out;
+}
+
+.hero-btn{
+    margin: 1.5rem;
+}

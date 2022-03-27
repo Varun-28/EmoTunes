@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import heroImg from "../../assets/Cassette player-amico.svg";
 import { useTheme } from "../../Context/theme-context.js";
+import { Features } from "../../components/Features";
 import "./home.css";
 
 function Home() {
@@ -37,9 +38,7 @@ function Home() {
 					/>
 				</div>
 			</section>
-			<section>
-				<h1>Features</h1>
-			</section>
+			<Features />
 		</div>
 	);
 }
