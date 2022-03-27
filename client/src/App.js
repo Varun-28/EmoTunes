@@ -8,6 +8,7 @@ import {Login} from "./pages/login/Login.jsx";
 import {Signup} from "./pages/signup/Signup.jsx";
 import {useTheme} from "./Context/theme-context";
 import {Capture} from "./pages/capture/Capture.jsx";
+import { Playlist } from './pages/playlist/Playlist';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/choice' element={<Choice />}/>
           <Route path='/choice/capture' element={<Capture />}/>
+          <Route path='/choice/playlist' element={<Playlist />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
         </Routes> 

@@ -4,7 +4,6 @@ import cameraImg from "../../assets/streamline-icon-camera-1@400x400.PNG";
 import playlistImg from "../../assets/streamline-icon-tracklist-2@400x400.PNG";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Capture } from "../capture/Capture";
 import "./choice.css";
 
 function Choice() {

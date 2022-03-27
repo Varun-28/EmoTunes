@@ -1,5 +1,6 @@
 import React from "react";
 import "../Stylesheets/features.css";
+
 function Features() {
 	return (
 		<div>
@@ -9,7 +10,7 @@ function Features() {
 			<section className="icons-container">
 				<div className="icons">
 					<i className="fa-solid fa-face-laugh-wink icons_for-bookhub"></i>
-					<div className="content">
+					<div className="feature-content">
 						<h3 className="port-shipping">Emotion based</h3>
 						<p className="facility_for-port">emotion based music player</p>
 					</div>
@@ -17,7 +18,7 @@ function Features() {
 
 				<div className="icons">
 					<i className="fa-solid fa-universal-access icons_for-bookhub"></i>
-					<div className="content">
+					<div className="feature-content">
 						<h3 className="port-shipping">Accessibility</h3>
 						<p className="facility_for-port">easy user interaction</p>
 					</div>
@@ -25,7 +26,7 @@ function Features() {
 
 				<div className="icons">
 					<i className="fa-solid fa-camera icons_for-bookhub"></i>
-					<div className="content">
+					<div className="feature-content">
 						<h3 className="port-shipping">Mood capture</h3>
 						<p className="facility_for-port">captures mood</p>
 					</div>
@@ -33,7 +34,7 @@ function Features() {
 
 				<div className="icons">
 					<i className="fa-solid fa-laptop icons_for-bookhub"></i>
-					<div className="content">
+					<div className="feature-content">
 						<h3 className="port-shipping">Web Application</h3>
 						<p className="facility_for-port">web based app</p>
 					</div>
