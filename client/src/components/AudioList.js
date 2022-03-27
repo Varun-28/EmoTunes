@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaHeadphones, FaRegClock, FaRegHeart, FaHeart } from "react-icons/fa";
-import "../Stylesheets/LeftMenu.css";
+import "../Stylesheets/MainContainer.css";
 import MusicPlayer from "./MusicPlayer";
 import { Songs } from "./Songs";
 
@@ -38,9 +38,6 @@ function AudioList() {
 
   return (
     <div className="AudioList">
-      <h2 className="title">
-        The list <span>12 songs</span>
-      </h2>
 
       <div className="songsContainer">
         {songs &&

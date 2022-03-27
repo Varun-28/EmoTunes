@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import "../Stylesheets/MainContainer.css";
-import { FaUsers } from "react-icons/fa";
 import { AudioList } from "./AudioList";
-import { Banner } from "./Banner";
 
 function MainContainer() {
   useEffect(() => {
@@ -18,33 +16,31 @@ function MainContainer() {
 
   return (
     <div className="mainContainer">
-      <Banner />
 
       <div className="menuList">
         <ul>
           <li>
-            <a href="#">Popular</a>
+            <a href="#">Top Hits</a>
           </li>
           <li>
-            <a href="#">Albums</a>
+            <a href="#">Happy</a>
           </li>
           <li>
-            <a href="#">Songs</a>
+            <a href="#">Sad</a>
           </li>
           <li>
-            <a href="#">Fans</a>
+            <a href="#">Romantic</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="#">Party</a>
+          </li>
+          <li>
+            <a href="#">Bhakti</a>
+          </li>
+          <li>
+            <a href="#">Old Songs</a>
           </li>
         </ul>
-
-        <p>
-          <i>
-            <FaUsers />
-          </i>
-          12.3M <span>Followers</span>
-        </p>
       </div>
 
       <AudioList />

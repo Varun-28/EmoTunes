@@ -63,13 +63,6 @@ function MusicPlayer({ song, imgSrc, auto }) {
   const changeProgress = () => {
     audioPlayer.current.currentTime = progressBar.current.value;
 
-    // progressBar.current.style.setProperty(
-    //   "--played-width",
-    //   `${(progressBar.current.value / duration) * 100}%`
-    // );
-
-    // setCurrenttime(progressBar.current.value);
-
     changeCurrentTime();
   };
 
@@ -107,9 +100,6 @@ function MusicPlayer({ song, imgSrc, auto }) {
                 </i>
               )}
             </div>
-            <i className="download">
-              <BsDownload />
-            </i>
           </div>
 
           <div className="middle">

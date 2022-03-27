@@ -1,6 +1,5 @@
-import { React, useRef, useEffect } from "react";
+import { React, useRef, useEffect} from "react";
 import "./capture.css";
-import { Link } from "react-router-dom";
 import { useTheme } from "../../Context/theme-context.js";
 
 function Capture() {
@@ -37,6 +36,7 @@ function Capture() {
 		const ctx = photo.getContext("2d");
 
 		ctx.drawImage(video, 0, 0, width, height);
+		
 	};
 
 	const clearImage = () => {
@@ -56,25 +56,27 @@ function Capture() {
 			<video ref={videoRef} className="container"></video>
 			<button
 				onClick={takePicture}
-				className="hero-btn px-4 py-2 mx-auto md:mx-0 ml-4"
+				className="capture-btn px-4 py-2 mx-auto md:mx-0 ml-4"
 				style={{
 					backgroundColor: `${theme.mode.secondaryColor}`,
 					color: `${theme.mode.bgColor}`,
 				}}
 			>
-				<Link to="">Capture</Link>
+				Capture
 			</button>
+			
 			<canvas className="container" ref={photoRef}></canvas>
 			<button
 				onClick={clearImage}
-				className="hero-btn px-4 py-2 md:mx-0 mr-16"
+				className="capture-btn px-4 py-2 md:mx-0 mr-16"
 				style={{
 					backgroundColor: `${theme.mode.secondaryColor}`,
 					color: `${theme.mode.bgColor}`,
 				}}
 			>
-				<Link to="">Close</Link>
+				Close
 			</button>
+			
 		</div>
 	);
 }
