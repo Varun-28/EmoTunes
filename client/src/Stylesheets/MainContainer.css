@@ -169,7 +169,8 @@
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-@media screen and (max-width: 550px) {
+@media only screen and (max-width: 800px) {
+
   .mainContainer {
     min-width: 380px;
   }

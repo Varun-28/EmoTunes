@@ -204,7 +204,8 @@
   }
 }
 
-@media screen and (min-width: 550px) and (max-width: 1080px) {
+@media only screen and (max-width: 800px) {
+
   .musicPlayer .songImage {
     width: 100px;
     min-width: 100px;

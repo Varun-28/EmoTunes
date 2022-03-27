@@ -155,7 +155,8 @@
   margin-left: auto;
 }
 
-@media screen and (max-width: 550px) {
+@media only screen and (max-width: 800px) {
+
   .leftMenu {
     min-width: 64px;
     width: 64px;
