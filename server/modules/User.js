@@ -18,7 +18,9 @@ const SignupSchema = new Schema({
     date:{
         type: Date,
         default: Date.now
-    }
+    },
+    playlist:[],
+    favourite: []
 });
 
 const User = mongoose.model('signup', SignupSchema);
