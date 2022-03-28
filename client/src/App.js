@@ -9,7 +9,8 @@ import {Signup} from "./pages/signup/Signup.jsx";
 import {useTheme} from "./Context/theme-context";
 import {Capture} from "./pages/capture/Capture.jsx";
 import { Playlist } from './pages/playlist/Playlist';
-
+import { AdminLogin } from "./pages/admin/AdminLogin.jsx";
+import { AdminManagement } from "./pages/adminManage/AdminManagement.jsx";
 
 function App() {
   const {theme} = useTheme();
@@ -27,6 +28,8 @@ function App() {
           <Route path='/choice/playlist' element={<Playlist />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
+          <Route path='/adminlogin' element={<AdminLogin />}/>
+          <Route path='/adminlogin/manage' element={<AdminManagement />}/>
         </Routes> 
       </div>
       <div className='footer'>
