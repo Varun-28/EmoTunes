@@ -10,23 +10,23 @@ function AdminSongs() {
 			<form className="song-form">
 				<label htmlFor="song-name">
 					Song Name
-					<input type="text" className="song-input" aria-label="true" />
+					<input type="text" className="song-input" aria-label="song name" />
 				</label>
 				<label htmlFor="artist-name">
 					Artist Name
-					<input type="text" className="song-input" aria-label="true" />
+					<input type="text" className="song-input" aria-label="artist name" />
 				</label>
 				<label htmlFor="song-link">
 					Song Link
-					<input type="text" className="song-input" aria-label="true" />
+					<input type="text" className="song-input" aria-label="song link" />
 				</label>
 				<label htmlFor="song-image">
 					Song Image
-					<input type="text" className="song-input" aria-label="true" />
+					<input type="text" className="song-input" aria-label="song image" />
 				</label>
 				<label htmlFor="song-category">
 					Category Name
-					<input type="text" className="song-input" aria-label="true" />
+					<input type="text" className="song-input" aria-label="song category" />
 				</label>
 				<button
 					className="hero-btn px-4 py-2 mx-auto md:mx-0"

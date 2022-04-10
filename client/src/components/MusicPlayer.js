@@ -11,7 +11,6 @@ import {
   FaPause,
   FaShareAlt,
 } from "react-icons/fa";
-import { BsDownload } from "react-icons/bs";
 
 function MusicPlayer({ song, imgSrc, auto }) {
   const [isLove, setLove] = useState(false);
