@@ -1,48 +1,31 @@
-import {React, useRef, useState} from "react";
+import { React, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { InputField } from "../../components/InputField";
 import "../../Stylesheets/login-signup.css";
-// import axios from "axios";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
-  // const [loginCredentials, setLoginCredentials] = useState({
-  //   email: "",
-  //   password: "",
-  // });
   const email = useRef();
   const password = useRef();
-
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json"
-       },
-        body: JSON.stringify({
-          email: email.current.value,
-          password: password.current.value,
-        }),
-      });
-      const json = response.json();
-      console.log(json.success);
-      if(json.success){
-        localStorage.setItem('token',json.authToken);
+      const response = await axios.post("/api/auth/login", {
+        email: email.current.value,
+        password: password.current.value,
+      }
+      );
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.authToken);
         navigate("/choice");
-      }else{
-        console.log(json);
+      } else {
+        console.log(response);
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  // const changeHandler = (e) => {
-  //   setLoginCredentials({...loginCredentials, [e.target.id]: e.target.value});
-  // }
 
   return (
     <div className="pattern-bg">
@@ -50,22 +33,32 @@ function Login() {
         <h3 className="text-3xl font-medium">Login</h3>
         <p>Enter your credentials to access your account.</p>
         <form onSubmit={submitHandler}>
-          <InputField
-            type="email"
-            inputId="email"
-            name="Email-id:"
-            placeholder="jhon@gmail.com"
-            refVal={email}
-          />
-          <InputField
-            type="password"
-            inputId="password"
-            name="Password:"
-            placeholder="********"
-            refVal={password}
-          />
-          {/* <input type="email" placeholder="email" ref={email} />
-          <input type="password" placeholder="password" ref={password} /> */}
+          <div
+            className="input-group flex flex-col gap-y-2 text-left 
+          my-4 mx-auto w-4/5 md:w-3/4 lg:w-3/5"
+          >
+            <label htmlFor="email">Email-id:</label>
+            <input
+              className="border-2 border-solid p-2 rounded border-current"
+              type="email"
+              id="email"
+              placeholder="jhon@gmail.com"
+              ref={email}
+            />
+          </div>
+          <div
+            className="input-group flex flex-col gap-y-2 text-left 
+          my-4 mx-auto w-4/5 md:w-3/4 lg:w-3/5"
+          >
+            <label htmlFor="password">Password:</label>
+            <input
+              className="border-2 border-solid p-2 rounded border-current"
+              type="password"
+              id="password"
+              placeholder="jhon@gmail.com"
+              ref={password}
+            />
+          </div>
           <button
             className="login-signup-btn px-4 py-2 mx-auto w-4/5 md:w-3/4 lg:w-3/5
          font-medium rounded"
