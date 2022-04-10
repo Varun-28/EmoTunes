@@ -2,8 +2,11 @@ import { React, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../Stylesheets/login-signup.css";
+import { useAlert } from "react-alert";
+
 
 function Signup() {
+  const alert = useAlert();
   const navigate = useNavigate();
   const email = useRef();
   const name = useRef();
@@ -20,13 +23,15 @@ function Signup() {
       }
       );
       if (response.data.success) {
+        alert.show("Signup Success, Please Login!", { type: "success" });
         localStorage.setItem("token", response.data.authToken);
         navigate("/login");
       } else {
-        console.log(response);
+        alert.show("Something went wrong", { type: "error" });
       }
     } catch (error) {
-      console.log(error);
+      const err = error.response;
+      alert.show(err.data.error, {type: 'error'});
     }
   };
 

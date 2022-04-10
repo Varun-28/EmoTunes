@@ -1,9 +1,11 @@
 import { React, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../Stylesheets/login-signup.css";
+import { useAlert } from "react-alert";
 import axios from "axios";
 
 function Login() {
+  const alert = useAlert();
   const navigate = useNavigate();
   const email = useRef();
   const password = useRef();
@@ -17,13 +19,15 @@ function Login() {
       }
       );
       if (response.data.success) {
+        alert.show("Login Success", { type: "success" });
         localStorage.setItem("token", response.data.authToken);
         navigate("/choice");
       } else {
-        console.log(response);
+        alert.show("Something went wrong", { type: "error" });
       }
     } catch (error) {
-      console.log(error);
+      const err = error.response;
+      alert.show(err.data.error, {type: 'error'});
     }
   };
 

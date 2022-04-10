@@ -77,7 +77,7 @@ router.post(
       if (!user) {
         return res.status(400).json({
           success: false,
-          error: "Please try to login with correct credentials",
+          error: "No user found with given credentials",
         });
       }
 
