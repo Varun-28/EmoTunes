@@ -29,3 +29,11 @@
     color: var(--light-secondary-color);
 }
 
+.password-btn{
+    position: absolute;
+    right: 0;
+}
+
+.error-msg{
+    color: var(--error-color);
+}
