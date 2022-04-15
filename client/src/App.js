@@ -1,38 +1,24 @@
-import './App.css';
-import {Routes, Route} from "react-router-dom";
-import {Navbar} from "./components/Navbar";
-import {Footer} from "./components/Footer";
-import {Home} from "./pages/home/Home.jsx";
-import {Choice} from "./pages/choice/Choice.jsx";
-import {Login} from "./pages/login/Login.jsx";
-import {Signup} from "./pages/signup/Signup.jsx";
-import {useTheme} from "./Context/theme-context";
-import {Capture} from "./pages/capture/Capture.jsx";
-import { Playlist } from './pages/playlist/Playlist';
-import { AdminLogin } from "./pages/admin/AdminLogin.jsx";
-import { AdminManagement } from "./pages/adminManage/AdminManagement.jsx";
+import "./App.css";
+import { useTheme } from "./Context/theme-context";
+import { Navbar, Footer, EmoTunesRoutes } from "./components/Components";
 
 function App() {
-  const {theme} = useTheme();
+  const { theme } = useTheme();
   return (
-    <div className="App flex flex-col min-h-screen" 
-    style={{backgroundColor: theme.mode.bgColor, color:theme.mode.primaryColor}}>
-      <div className='header'>
-        <Navbar /> 
+    <div
+      className="App flex flex-col min-h-screen"
+      style={{
+        backgroundColor: theme.mode.bgColor,
+        color: theme.mode.primaryColor,
+      }}
+    >
+      <div className="header">
+        <Navbar />
       </div>
-      <div className='main flex-grow'>
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/choice' element={<Choice />}/>
-          <Route path='/choice/capture' element={<Capture />}/>
-          <Route path='/choice/playlist' element={<Playlist />}/>
-          <Route path='/login' element={<Login />}/>
-          <Route path='/signup' element={<Signup />}/>
-          <Route path='/adminlogin' element={<AdminLogin />}/>
-          <Route path='/adminlogin/manage' element={<AdminManagement />}/>
-        </Routes> 
+      <div className="main flex-grow">
+        <EmoTunesRoutes />
       </div>
-      <div className='footer'>
+      <div className="footer">
         <Footer />
       </div>
     </div>

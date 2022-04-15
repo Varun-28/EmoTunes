@@ -11,3 +11,7 @@
     place-items: center;
     overflow: show;
 }
+
+.page-not-found{
+    margin-top: -2rem;
+}
