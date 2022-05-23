@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "./Context/theme-context";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
@@ -28,4 +27,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-reportWebVitals();
