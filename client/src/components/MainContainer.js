@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSong } from "../Context/songDataContext/song-context";
 import "../Stylesheets/MainContainer.css";
 import { AudioList } from "./AudioList";
 
-function MainContainer() {
+function MainContainer({search}) {
 	const { songsCategory, songCategoryHandler } = useSong();
 	function songHandler(e) {
 		if (e.target.checked) {
@@ -106,7 +106,7 @@ function MainContainer() {
 				</label>
 			</div>
 
-			<AudioList />
+			<AudioList search={search} />
 		</div>
 	);
 }

@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../Stylesheets/MainContainer.css";
 import { MusicPlayer } from "./MusicPlayer";
 import { useSong } from "../Context/songDataContext/song-context";
 import { LoaderAnimation } from "./LoaderAnimation";
 
-function AudioList() {
+function AudioList({search}) {
 	const { filteredsongs } = useSong();
 	const [curerntSong, setCurrentsong] = useState({});
 	const [showPlayer, setShowPlayer] = useState(false);
 
+	const searchedSongs = filteredsongs.filter(
+		(song) =>
+		  song.title.toLowerCase().includes(search.toLowerCase()) ||
+		  song.singer.toLowerCase().includes(search.toLowerCase())
+	  );
 	return (
 		<div className="AudioList">
 			<div className="songsContainer">
-				{filteredsongs.length === 0 ? (
+				{searchedSongs.length === 0 ? (
 					<LoaderAnimation />
 				) : (
-					filteredsongs.map((song) => (
+					searchedSongs.map((song) => (
 						<div
 							className="songs"
 							key={song.id}
