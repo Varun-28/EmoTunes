@@ -1,60 +1,43 @@
 import { useState, useEffect, useRef } from "react";
 import { LoaderAnimation } from "../../components/LoaderAnimation";
 import { useTheme } from "../../Context/theme-context.js";
-import * as tf from "@tensorflow/tfjs";
+import * as faceapi from "face-api.js";
 import "./selectImage.css";
+import { useSong } from "../../Context/songDataContext/song-context";
+import { useNavigate } from "react-router-dom";
 
 function SelectImage() {
   const { theme } = useTheme();
   const [isModelLoading, setIsModelLoading] = useState(false);
-  const [model, setModel] = useState(null);
   const [imageURL, setImageURL] = useState(null);
-  const [results, setResults] = useState([]);
-  const op = {
-    0: "Angry",
-    1: "Disguist",
-    2: "Fear",
-    3: "Happy",
-    4: "Neutral",
-    5: "Sad",
-    6: "Surprise",
-  };
-
+  const [results, setResults] = useState("");
   const imageRef = useRef();
   const textInputRef = useRef();
   const fileInputRef = useRef();
+  const { songCategoryHandler } = useSong();
+  const navigate = useNavigate();
 
-  const loadModel = async () => {
-    try {
-      const Resmodel = await tf.loadLayersModel("/tfjs/model.json");
-      setModel(Resmodel);
-    } catch (error) {
-      console.log(error);
-    }
+  const expressionResult = {
+    angry: "Angry 😠",
+    disgusted: "Angry 😠",
+    fearful: "Surprise 😲",
+    happy: "Happy 😀",
+    neutral: "Neutral 😑",
+    sad: "Sad 😔",
+    surprised: "Surprise 😲",
   };
 
-  const identify = async () => {
-    setIsModelLoading(true);
-    try {
-      textInputRef.current.value = "";
-      var img = new Image();
-      img.width = 244;
-      img.height = 244;
-      img.src = imageURL;
-      const tensorImg = tf.browser
-        .fromPixels(img)
-        .resizeNearestNeighbor([244, 244])
-        .toFloat()
-        .expandDims();
-      const Imgresults = await model.predict(tensorImg).data();
-      setResults(Imgresults);
-      setIsModelLoading(false);
-    } catch (error) {
-      console.log(error);
-      setIsModelLoading(false);
-    }
-  };
+  const pathToSong = {
+    angry: "Angry",
+    disgusted: "Angry",
+    fearful: "Surprise",
+    happy: "Happy",
+    neutral: "Neutral",
+    sad: "Sad",
+    surprised: "Surprise",
+  }
 
+  // when image is uploaded
   const uploadImage = (e) => {
     const { files } = e.target;
     if (files.length > 0) {
@@ -65,18 +48,60 @@ function SelectImage() {
     }
   };
 
+  // when image url is given
   const handleOnChange = (e) => {
     setImageURL(e.target.value);
     setResults([]);
   };
 
+  // when upload button is clicked
   const triggerUpload = () => {
     fileInputRef.current.click();
   };
 
+  // face detection code
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find((key) => object[key] === value);
+  }
+  const identifyImage = async () => {
+    setIsModelLoading(true);
+    try {
+      const detections = await faceapi
+        .detectAllFaces(imageRef.current, new faceapi.TinyFaceDetectorOptions())
+        .withFaceLandmarks()
+        .withFaceExpressions();
+      console.log(detections);
+      const expressionObj = detections[0].expressions;
+      const expressionArr = Object.values(expressionObj);
+      let maxVal = expressionArr[0];
+      expressionArr.forEach((element) => {
+        if (element > maxVal) {
+          maxVal = element;
+        }
+      });
+      const mood = getKeyByValue(expressionObj, maxVal);
+      setResults(mood);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsModelLoading(false);
+    }
+  };
+
   useEffect(() => {
-    loadModel();
-  }, []);
+    const loadModels = () => {
+      Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
+        faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
+        faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
+        faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+      ])
+        .then(console.log("model loaded"))
+        .catch((e) => console.log(e));
+    };
+
+    imageRef.current && loadModels();
+  }, [imageURL]);
 
   return (
     <div className="App">
@@ -118,6 +143,7 @@ function SelectImage() {
             {imageURL && (
               <img
                 src={imageURL}
+                className="preview-img"
                 alt="Upload Preview"
                 crossOrigin="anonymous"
                 ref={imageRef}
@@ -126,7 +152,7 @@ function SelectImage() {
             {imageURL && (
               <button
                 className="button btn-upload mt-2 mx-auto"
-                onClick={identify}
+                onClick={identifyImage}
                 style={{
                   backgroundColor: `${theme.mode.secondaryColor}`,
                   color: `${theme.mode.bgColor}`,
@@ -138,25 +164,15 @@ function SelectImage() {
           </div>
           <div className="resultsHolder p-4 border-box">
             <h4 className="text-center p-2 text-2xl underline">Results</h4>
-            {results.length > 0 && (
+            {results.length !== 0 && (
               <div className=" flex flex-col items-center justify-center mt-4">
-                {results.map((result, index) => {
-                  return (
-                    <div className="result" key={result.className}>
-                      <span className="name">{result.className}</span>
-                      <span className="confidence">
-                        Confidence level:{" "}
-                        {(result.probability * 100).toFixed(2)}%{" "}
-                        {index === 0 && (
-                          <span className="bestGuess">Best Guess</span>
-                        )}
-                      </span>
-                    </div>
-                  );
-                })}
+                <span className="text-2xl font-bold my-12">{expressionResult[results]}</span>
                 <button
                   className="button btn-upload mt-4"
-                  onClick={identify}
+                  onClick={() => {
+                    songCategoryHandler(pathToSong[results]);
+                    navigate("/choice/playlist")
+                  }}
                   style={{
                     backgroundColor: `${theme.mode.secondaryColor}`,
                     color: `${theme.mode.bgColor}`,
