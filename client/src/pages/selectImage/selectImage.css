@@ -27,9 +27,18 @@
     min-height: 24rem;
 }
 
-/* .result{
-    height: 100%;
-} */
+.imageHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.preview-img{
+    width: 18rem;
+    height: auto;
+    margin: 2rem auto;
+}
 
 @media only screen and (max-width:800px) {
     .mainContent {

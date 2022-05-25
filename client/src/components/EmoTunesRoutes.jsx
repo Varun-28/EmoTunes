@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { RequiresAuth, PageNotFound } from "./Components.js";
 import {
   Choice,
-  Capture,
   Playlist,
   Home,
   Login,
@@ -43,7 +42,7 @@ export function EmoTunesRoutes() {
         path="/choice/capture"
         element={
           <RequiresAuth>
-            <Capture />
+            <SelectImage />
           </RequiresAuth>
         }
       />
@@ -55,7 +54,6 @@ export function EmoTunesRoutes() {
           </RequiresAuth>
         }
       />
-      <Route path="/choice/select-image" element={<SelectImage />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
