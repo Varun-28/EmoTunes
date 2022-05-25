@@ -17,7 +17,7 @@ const MenuList = [
     path: "/choice",
   },
   {
-    id: 2,
+    id: 3,
     icon: <AiFillCamera />,
     name: "Capture",
     path: "/choice/capture",

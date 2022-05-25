@@ -85,7 +85,6 @@ function SelectImage() {
         .detectAllFaces(imageRef.current, new faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceExpressions();
-      console.log(detections);
       const expressionObj = detections[0].expressions;
       const expressionArr = Object.values(expressionObj);
       let maxVal = expressionArr[0];
