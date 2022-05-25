@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { LoaderAnimation } from "../../components/LoaderAnimation";
 import { useTheme } from "../../Context/theme-context.js";
 import * as tf from "@tensorflow/tfjs";
+import * as faceapi from "face-api.js";
 import "./selectImage.css";
 
 function SelectImage() {
@@ -10,23 +11,49 @@ function SelectImage() {
   const [model, setModel] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const [results, setResults] = useState([]);
-  const op = {
-    0: "Angry",
-    1: "Disguist",
-    2: "Fear",
-    3: "Happy",
-    4: "Neutral",
-    5: "Sad",
-    6: "Surprise",
-  };
+  // const op = {
+  //   0: "Angry",
+  //   1: "Disguist",
+  //   2: "Fear",
+  //   3: "Happy",
+  //   4: "Neutral",
+  //   5: "Sad",
+  //   6: "Surprise",
+  // };
 
   const imageRef = useRef();
   const textInputRef = useRef();
   const fileInputRef = useRef();
 
+  // const loadModels = () => {
+  //   Promise([
+  //     faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+  //   ]).then(() => {
+  //     faceDetection();
+  //   });
+  // };
+
+  // const faceDetection = async () => {
+  //   const detections = await faceapi
+  //     .detectAllFaces(imageRef.current, new faceapi.TinyFaceDetectorOptions())
+  //     .withFaceExpressions();
+
+  //   faceapi.matchDimensions(imageRef.current, {
+  //     width: 940,
+  //     height: 650,
+  //   });
+  //   const resized = faceapi.resizeResults(detections, {
+  //     width: 940,
+  //     height: 650,
+  //   });
+  //   faceapi.draw.drawFaceExpressions(imageRef.current, resized);
+  // };
+
   const loadModel = async () => {
     try {
-      const Resmodel = await tf.loadLayersModel("/tfjs/model.json");
+      const Resmodel = await faceapi.nets.faceExpressionNet.loadFromUri(
+        "/models"
+      );
       setModel(Resmodel);
     } catch (error) {
       console.log(error);
@@ -36,18 +63,22 @@ function SelectImage() {
   const identify = async () => {
     setIsModelLoading(true);
     try {
-      textInputRef.current.value = "";
-      var img = new Image();
-      img.width = 244;
-      img.height = 244;
-      img.src = imageURL;
-      const tensorImg = tf.browser
-        .fromPixels(img)
-        .resizeNearestNeighbor([244, 244])
-        .toFloat()
-        .expandDims();
-      const Imgresults = await model.predict(tensorImg).data();
-      setResults(Imgresults);
+      const detections = await faceapi
+        .detectAllFaces(imageRef.current, new faceapi.TinyFaceDetectorOptions())
+        .withFaceExpressions();
+
+        console.log(detections);
+      faceapi.matchDimensions(imageRef.current, {
+        width: 940,
+        height: 650,
+      });
+      const resized = faceapi.resizeResults(detections, {
+        width: 940,
+        height: 650,
+      });
+      faceapi.draw.drawFaceExpressions(imageRef.current, resized);
+
+      setResults();
       setIsModelLoading(false);
     } catch (error) {
       console.log(error);

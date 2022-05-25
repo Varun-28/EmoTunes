@@ -25,10 +25,6 @@ function Footer() {
         <p>Made with <FontAwesomeIcon icon={faHeart} /> and <FontAwesomeIcon icon={faCode} />.</p>
       </div>
       <span className='block w-2/4 mx-auto border-t-2 border-solid rounded my-4 border-transparent' style={{borderColor: `${theme.mode.shadowColor}`}}></span>
-      <div>
-        <p><a href="https://storyset.com/people">People illustrations by Storyset</a></p>
-        <p><a href="https://www.streamlinehq.com">Free PNG illustration by Streamline</a></p>
-      </div>
     </div>
   )
 }
