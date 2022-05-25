@@ -1,13 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { LoaderAnimation } from "../../components/LoaderAnimation";
 import { useTheme } from "../../Context/theme-context.js";
 import * as faceapi from "face-api.js";
 import "./selectImage.css";
 import { useSong } from "../../Context/songDataContext/song-context";
 import { useNavigate } from "react-router-dom";
+import Webcam from "react-webcam";
 
 function SelectImage() {
   const { theme } = useTheme();
+  const [showCamera, setShowCamera] = useState(false);
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [imageURL, setImageURL] = useState(null);
   const [results, setResults] = useState("");
@@ -35,8 +37,21 @@ function SelectImage() {
     neutral: "Neutral",
     sad: "Sad",
     surprised: "Surprise",
-  }
+  };
 
+  //image capture
+  const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user",
+  };
+
+  const webcamRef = useRef(null);
+  const capture = useCallback(() => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setShowCamera((val) => !val);
+    setImageURL(imageSrc);
+  }, [webcamRef]);
   // when image is uploaded
   const uploadImage = (e) => {
     const { files } = e.target;
@@ -135,6 +150,17 @@ function SelectImage() {
           ref={textInputRef}
           onChange={handleOnChange}
         />
+        <span className="or">OR</span>
+        <button
+          className="captureImage btn-upload"
+          onClick={() => setShowCamera((val) => !val)}
+          style={{
+            backgroundColor: `${theme.mode.secondaryColor}`,
+            color: `${theme.mode.bgColor}`,
+          }}
+        >
+          Capture Image
+        </button>
       </div>
       <div className="mainWrapper">
         <div className="mainContent p-8">
@@ -166,12 +192,14 @@ function SelectImage() {
             <h4 className="text-center p-2 text-2xl underline">Results</h4>
             {results.length !== 0 && (
               <div className=" flex flex-col items-center justify-center mt-4">
-                <span className="text-2xl font-bold my-12">{expressionResult[results]}</span>
+                <span className="text-2xl font-bold my-12">
+                  {expressionResult[results]}
+                </span>
                 <button
                   className="button btn-upload mt-4"
                   onClick={() => {
                     songCategoryHandler(pathToSong[results]);
-                    navigate("/choice/playlist")
+                    navigate("/choice/playlist");
                   }}
                   style={{
                     backgroundColor: `${theme.mode.secondaryColor}`,
@@ -185,6 +213,42 @@ function SelectImage() {
           </div>
         </div>
       </div>
+      {showCamera && (
+        <div className="webcam-container">
+          <div className="webcam-wrapper">
+            <Webcam
+              audio={false}
+              height={500}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              width={500}
+              videoConstraints={videoConstraints}
+            />
+            <div className="webcam-btns">
+              <button
+                className="btn-upload"
+                onClick={capture}
+                style={{
+                  backgroundColor: `${theme.mode.secondaryColor}`,
+                  color: `${theme.mode.bgColor}`,
+                }}
+              >
+                Capture photo
+              </button>
+              <button
+                className="btn-upload"
+                onClick={() => setShowCamera((val) => !val)}
+                style={{
+                  backgroundColor: `${theme.mode.secondaryColor}`,
+                  color: `${theme.mode.bgColor}`,
+                }}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {isModelLoading && <LoaderAnimation />}
     </div>
   );
