@@ -1,103 +1,55 @@
 import React, { useEffect, useState } from "react";
-import { FaHeadphones, FaRegClock, FaRegHeart, FaHeart } from "react-icons/fa";
 import "../Stylesheets/MainContainer.css";
-import MusicPlayer from "./MusicPlayer";
-import { Songs } from "./Songs";
+import { MusicPlayer } from "./MusicPlayer";
+import { useSong } from "../Context/songDataContext/song-context";
+import { LoaderAnimation } from "./LoaderAnimation";
 
 function AudioList() {
-  const [songs, setSongs] = useState(Songs);
-  const [song, setSong] = useState(songs[0].song);
-  const [img, setImage] = useState(songs[0].imgSrc);
-  const [auto, setAuto] = useState(false);
+	const { filteredsongs } = useSong();
+	const [curerntSong, setCurrentsong] = useState({});
+	const [showPlayer, setShowPlayer] = useState(false);
 
-  useEffect(() => {
-    const allSongs = document.querySelectorAll(".songs");
-    function changeActive() {
-      allSongs.forEach((n) => n.classList.remove("active"));
-      this.classList.add("active");
-    }
+	return (
+		<div className="AudioList">
+			<div className="songsContainer">
+				{filteredsongs.length === 0 ? (
+					<LoaderAnimation />
+				) : (
+					filteredsongs.map((song) => (
+						<div
+							className="songs"
+							key={song.id}
+							onClick={() => {
+								setCurrentsong({ ...song });
+								setShowPlayer(true);
+							}}
+						>
+							<div className="count">
+								<p>{`#${song.id}`}</p>
+							</div>
+							<div className="song">
+								<div className="imgBox">
+									<img src={song.img} alt="" />
+								</div>
+								<div className="section">
+									<div className="hits">
+										<p className="hit">{song.title}</p>
 
-    allSongs.forEach((n) => n.addEventListener("click", changeActive));
-  }, []);
-
-  const changeFavourite = (id) => {
-    Songs.forEach((song) => {
-      if (song.id === id) {
-        song.favourite = !song.favourite;
-      }
-    });
-
-    setSongs([...songs]);
-  };
-
-  const setMainSong = (songSrc, imgSrc) => {
-    setSong(songSrc);
-    setImage(imgSrc);
-    setAuto(true);
-  };
-
-  return (
-    <div className="AudioList">
-
-      <div className="songsContainer">
-        {songs &&
-          songs.map((song, index) => (
-            <div
-              className="songs"
-              key={song?.id}
-              onClick={() => setMainSong(song?.song, song?.imgSrc)}
-            >
-              <div className="count">
-                <p>{`#${index + 1}`}</p>
-              </div>
-              <div className="song">
-                <div className="imgBox">
-                  <img src={song?.imgSrc} alt="" />
-                </div>
-                <div className="section">
-                  <p className="songName">
-                    {song?.songName}{" "}
-                    <span className="songSpan">{song?.artist}</span>
-                  </p>
-
-                  <div className="hits">
-                    <p className="hit">
-                      <i>
-                        <FaHeadphones />
-                      </i>
-                      95,490,102
-                    </p>
-
-                    <p className="duration">
-                      <i>
-                        <FaRegClock />
-                      </i>
-                      03:04
-                    </p>
-                    <div
-                      className="favourite"
-                      onClick={() => changeFavourite(song?.id)}
-                    >
-                      {song?.favourite ? (
-                        <i>
-                          <FaHeart />
-                        </i>
-                      ) : (
-                        <i>
-                          <FaRegHeart />
-                        </i>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-      </div>
-
-      <MusicPlayer song={song} imgSrc={img} autoplay={auto} />
-    </div>
-  );
+										<p className="song-singer">{song.singer}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					))
+				)}
+			</div>
+			{!showPlayer ? (
+				<div>Select the song to Listen to your music the way you like!</div>
+			) : (
+				<MusicPlayer curerntSong={curerntSong} />
+			)}
+		</div>
+	);
 }
 
 export { AudioList };
