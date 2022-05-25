@@ -140,7 +140,7 @@ function SelectImage() {
             color: `${theme.mode.bgColor}`,
           }}
         >
-          Upload Image
+         <i className="fas fa-upload"></i> Upload
         </button>
         <span className="or">OR</span>
         <input
@@ -159,7 +159,7 @@ function SelectImage() {
             color: `${theme.mode.bgColor}`,
           }}
         >
-          Capture Image
+          <i className="fas fa-camera"></i> Capture
         </button>
       </div>
       <div className="mainWrapper">
@@ -184,7 +184,7 @@ function SelectImage() {
                   color: `${theme.mode.bgColor}`,
                 }}
               >
-                Predict Mood
+                Predict Mood 🤔
               </button>
             )}
           </div>
@@ -206,7 +206,7 @@ function SelectImage() {
                     color: `${theme.mode.bgColor}`,
                   }}
                 >
-                  Listen Songs
+                  <i className="fas fa-music"></i> Listen Songs
                 </button>
               </div>
             )}
@@ -233,7 +233,7 @@ function SelectImage() {
                   color: `${theme.mode.bgColor}`,
                 }}
               >
-                Capture photo
+                <i className="fas fa-camera"></i> Capture
               </button>
               <button
                 className="btn-upload"
@@ -243,7 +243,7 @@ function SelectImage() {
                   color: `${theme.mode.bgColor}`,
                 }}
               >
-                Close
+                <i className="fas fa-times"></i> Close
               </button>
             </div>
           </div>
