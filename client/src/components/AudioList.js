@@ -44,7 +44,7 @@ function AudioList() {
 				)}
 			</div>
 			{!showPlayer ? (
-				<div>Select the song to Listen to your music the way you like!</div>
+				<div className="empty-msg">Select the song to Listen to your music the way you like!</div>
 			) : (
 				<MusicPlayer curerntSong={curerntSong} />
 			)}

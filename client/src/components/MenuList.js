@@ -1,33 +1,38 @@
-import { BsFillHouseFill, BsJournalAlbum } from "react-icons/bs";
-import { BiPulse } from "react-icons/bi";
-import { FaMicrophoneAlt } from "react-icons/fa";
-import { AiFillStar } from "react-icons/ai";
+import { BsFillHouseFill } from "react-icons/bs";
+import { BiLogIn } from "react-icons/bi";
+import { AiFillCamera, AiFillPlayCircle } from "react-icons/ai";
+import { GiChoice } from "react-icons/gi";
 
 const MenuList = [
   {
     id: 1,
     icon: <BsFillHouseFill />,
     name: "Home",
+    path: "/",
   },
   {
     id: 2,
-    icon: <BiPulse />,
-    name: "Categories",
+    icon: <GiChoice />,
+    name: "Choice",
+    path: "/choice",
   },
   {
     id: 2,
-    icon: <FaMicrophoneAlt />,
-    name: "Artist",
+    icon: <AiFillCamera />,
+    name: "Capture",
+    path: "/choice/capture",
   },
   {
     id: 4,
-    icon: <BsJournalAlbum />,
-    name: "Albums",
+    icon: <AiFillPlayCircle />,
+    name: "Song Player",
+    path: "/choice/playlist",
   },
   {
     id: 5,
-    icon: <AiFillStar />,
-    name: "Favourites",
+    icon: <BiLogIn />,
+    name: "Login",
+    path: "/login",
   },
 ];
 

@@ -1,13 +1,36 @@
 import { Routes, Route } from "react-router-dom";
 import { RequiresAuth, PageNotFound } from "./Components.js";
-import { Choice, Capture, Playlist, Home, Login, Signup, SelectImage } from "../pages/Pages";
+import {
+  Choice,
+  Capture,
+  Playlist,
+  Home,
+  Login,
+  Signup,
+  SelectImage,
+} from "../pages/Pages";
+import { PrivateRoute } from "./PrivateRoute.js";
 
 export function EmoTunesRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route
+        path="/login"
+        element={
+          <PrivateRoute>
+            <Login />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <PrivateRoute>
+            <Signup />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/choice"
         element={

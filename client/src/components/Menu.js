@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../Stylesheets/LeftMenu.css";
 
 function Menu({ title, listObject }) {
@@ -23,10 +24,10 @@ function Menu({ title, listObject }) {
 				{listObject &&
 					listObject.map((li) => (
 						<li key={li.id}>
-							<a href="#">
+							<Link to={li.path}>
 								<i>{li.icon}</i>
 								<span> {li.name}</span>
-							</a>
+							</Link>
 						</li>
 					))}
 			</ul>
