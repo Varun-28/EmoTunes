@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { LoaderAnimation } from "../../components/LoaderAnimation";
 import { useTheme } from "../../Context/theme-context.js";
-import * as mobilenet from "@tensorflow-models/mobilenet";
+import * as tf from "@tensorflow/tfjs";
 import "./selectImage.css";
 
 function SelectImage() {
@@ -10,6 +10,15 @@ function SelectImage() {
   const [model, setModel] = useState(null);
   const [imageURL, setImageURL] = useState(null);
   const [results, setResults] = useState([]);
+  const op = {
+    0: "Angry",
+    1: "Disguist",
+    2: "Fear",
+    3: "Happy",
+    4: "Neutral",
+    5: "Sad",
+    6: "Surprise",
+  };
 
   const imageRef = useRef();
   const textInputRef = useRef();
@@ -17,7 +26,7 @@ function SelectImage() {
 
   const loadModel = async () => {
     try {
-      const Resmodel = await mobilenet.load();
+      const Resmodel = await tf.loadLayersModel("/tfjs/model.json");
       setModel(Resmodel);
     } catch (error) {
       console.log(error);
@@ -28,7 +37,16 @@ function SelectImage() {
     setIsModelLoading(true);
     try {
       textInputRef.current.value = "";
-      const Imgresults = await model.classify(imageRef.current);
+      var img = new Image();
+      img.width = 244;
+      img.height = 244;
+      img.src = imageURL;
+      const tensorImg = tf.browser
+        .fromPixels(img)
+        .resizeNearestNeighbor([244, 244])
+        .toFloat()
+        .expandDims();
+      const Imgresults = await model.predict(tensorImg).data();
       setResults(Imgresults);
       setIsModelLoading(false);
     } catch (error) {
@@ -96,9 +114,7 @@ function SelectImage() {
       <div className="mainWrapper">
         <div className="mainContent p-8">
           <div className="imageHolder p-4 border-box text-center">
-            <h4 className="p-2 text-2xl underline">
-              Image Preview
-            </h4>
+            <h4 className="p-2 text-2xl underline">Image Preview</h4>
             {imageURL && (
               <img
                 src={imageURL}
@@ -116,14 +132,12 @@ function SelectImage() {
                   color: `${theme.mode.bgColor}`,
                 }}
               >
-                Identify Image
+                Predict Mood
               </button>
             )}
           </div>
           <div className="resultsHolder p-4 border-box">
-            <h4 className="text-center p-2 text-2xl underline">
-              Results
-            </h4>
+            <h4 className="text-center p-2 text-2xl underline">Results</h4>
             {results.length > 0 && (
               <div className=" flex flex-col items-center justify-center mt-4">
                 {results.map((result, index) => {
