@@ -1,5 +1,5 @@
 .mainContainer {
-  height: 100vh;
+  min-height: 100vh;
   flex-grow: 1;
   z-index: 1;
   backdrop-filter: blur(10px);
@@ -10,56 +10,32 @@
 .mainContainer .menuList {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap:2rem;
   padding: 15px 30px;
   background: var(--dark-secondary-color);
   border-radius: 1rem;
 }
-
-.menuList ul {
-  display: flex;
-  align-items: center;
+/* category bar */
+input[type="radio"] {
+  display: none;
 }
 
-.menuList ul li {
-  list-style: none;
-  margin: 0 25px;
-  position: relative;
-}
-
-.mainContainer .menuList ul li a {
-  text-decoration: none;
-  color: var(--dark-bg-color);
-}
-
-.mainContainer .menuList ul li::before {
-  position: absolute;
-  content: "";
-  bottom: -20px;
-  left: 10px;
-  width: 0px;
-  height: 5px;
+.radio-label {
+  border: solid 2px transparent;
   border-radius: 5px;
-  background: var(--light-secondary-color);
+  padding: 2px 4px;
+  cursor: pointer;
+  color: var(--light-primary-color);
 }
 
-.mainContainer .menuList ul li:hover::before,
-.mainContainer .menuList ul li.active::before {
-  width: 20px;
-  transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.radio-label:hover {
+  border-color: var(--light-shadow-color);
 }
-
-.mainContainer .menuList ul li:hover a,
-.mainContainer .menuList ul li.active a {
-  color: var(--light-secondary-color);
-  transition: 0.3s ease;
+.radio-checked{
+  color: var(--light-bg-color);
+  background-color: var(--light-secondary-color);
 }
-
-.mainContainer .menuList p {
-  color: var(--light-secondary-color);
-  font-size: 14px;
-}
-
 .mainContainer p i {
   font-size: 12px;
   margin-right: 6px;
@@ -122,7 +98,6 @@
 }
 
 .AudioList .songs .song .section {
-  display: flex;
   width: 100%;
 }
 
@@ -142,6 +117,8 @@
   display: flex;
   margin-left: auto;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
 }
 
 .AudioList .songs .song .section .hits p {
@@ -169,6 +146,11 @@
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.song-singer{
+  color: var(--light-secondary-color);
+  font-weight: 400;
+}
+
 @media only screen and (max-width: 800px) {
 
   .mainContainer {
@@ -178,7 +160,9 @@
   .menuList ul li {
     margin: 0 5px;
   }
-
+  .mainContainer .menuList{
+    gap: 0.5rem;
+  }
   .mainContainer .menuList ul li a {
     font-size: 14px;
   }
