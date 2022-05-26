@@ -33,25 +33,25 @@ export function EmoTunesRoutes() {
 			<Route
 				path="/choice"
 				element={
-					// <RequiresAuth>
-					<Choice />
-					// </RequiresAuth>
+					<RequiresAuth>
+						<Choice />
+					</RequiresAuth>
 				}
 			/>
 			<Route
 				path="/choice/capture"
 				element={
-					// <RequiresAuth>
-					<SelectImage />
-					// </RequiresAuth>
+					<RequiresAuth>
+						<SelectImage />
+					</RequiresAuth>
 				}
 			/>
 			<Route
 				path="/choice/playlist"
 				element={
-					// <RequiresAuth>
-					<Playlist />
-					// </RequiresAuth>
+					<RequiresAuth>
+						<Playlist />
+					</RequiresAuth>
 				}
 			/>
 			<Route path="*" element={<PageNotFound />} />
