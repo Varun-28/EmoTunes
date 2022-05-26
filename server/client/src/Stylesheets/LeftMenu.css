@@ -1,6 +1,5 @@
 .leftMenu {
   width: 280px;
-  height: 100%;
   min-height: 100vh;
   backdrop-filter: blur(10px);
   padding: 25px 20px;
@@ -180,5 +179,22 @@
 
   .leftMenu .menuContainer ul li {
     margin: 25px 0;
+  }
+  .leftMenu{
+    padding: 0 1rem;
+    background-color: var(--light-bg-color);
+    position: fixed;
+    bottom: 0;
+    z-index: 4;
+    width: 100%;
+    min-height: 5vh;
+  }
+  .menuContainer ul{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+  }
+  .menuContainer p{
+    display: none;
   }
 }
