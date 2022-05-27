@@ -12,6 +12,14 @@
     transition: 0.2s ease;
 }
 
+.btn-capture{
+    padding: 0.5rem 2rem;
+}
+
+.btn-close-capture{
+    border-radius: 50%;
+}
+
 .btn-upload:hover {
     transform: scale(1.05);
 }
@@ -23,8 +31,10 @@
 }
 
 .border-box{
-    border: dashed 2px var(--light-shadow-color);
+    border: solid 4px var(--light-shadow-color);
     min-height: 24rem;
+    border-radius: 1rem;
+    outline: dotted 2px var(--dark-secondary-color);
 }
 
 .imageHolder{
