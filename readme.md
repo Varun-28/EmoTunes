@@ -32,7 +32,7 @@ The name of our project is EmoTunes. EmoTunes is a web app that allows users to 
 
 ![image](https://user-images.githubusercontent.com/56014170/170413425-81c9bc6d-8b32-401e-9178-1408cf4284a8.png)
 
-![image](https://user-images.githubusercontent.com/56014170/170413504-7995635a-107e-493e-a6b6-99b6675d7dc0.png)
+![image](https://user-images.githubusercontent.com/56014170/170630806-c9f3faa4-50cd-4da4-9152-dccd1ec5f952.png)
 
 ![image](https://user-images.githubusercontent.com/56014170/170413552-b5657c37-d370-4c3a-9ac9-63abf4836e4d.png)
 

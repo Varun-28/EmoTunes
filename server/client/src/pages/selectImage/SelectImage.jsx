@@ -128,49 +128,49 @@ function SelectImage() {
 			<h1 className="header text-3xl text-center mb-4 font-bold">
 				Image Prediction
 			</h1>
-			<div className="inputHolder p-8 flex flex-col gap-4 items-center justify-center md:flex-row">
-				<input
-					type="file"
-					accept="image/*"
-					capture="camera"
-					className="uploadInput"
-					onChange={uploadImage}
-					ref={fileInputRef}
-				/>
-				<button
-					className="uploadImage  btn-upload"
-					onClick={triggerUpload}
-					style={{
-						backgroundColor: `${theme.mode.secondaryColor}`,
-						color: `${theme.mode.bgColor}`,
-					}}
-				>
-					<i className="fas fa-upload"></i> Upload
-				</button>
-				<span className="or">OR</span>
+			<div className="inputHolder px-32 py-8 flex flex-col gap-4 items-center justify-around md:flex-row">
+				<div className="flex gap-4">
+					<input
+						type="file"
+						accept="image/*"
+						capture="camera"
+						className="uploadInput"
+						onChange={uploadImage}
+						ref={fileInputRef}
+					/>
+					<button
+						className="uploadImage  btn-upload"
+						onClick={triggerUpload}
+						style={{
+							backgroundColor: `${theme.mode.secondaryColor}`,
+							color: `${theme.mode.bgColor}`,
+						}}
+					>
+						<i className="fas fa-upload"></i>
+					</button>
+					<button
+						className="captureImage btn-upload"
+						onClick={() => setShowCamera((val) => !val)}
+						style={{
+							backgroundColor: `${theme.mode.secondaryColor}`,
+							color: `${theme.mode.bgColor}`,
+						}}
+					>
+						<i className="fas fa-camera"></i>
+					</button>
+				</div>
 				<input
 					type="text"
 					className="rounded px-4 py-2"
-					placeholder="Paster image URL"
+					placeholder="Image URL"
 					ref={textInputRef}
 					onChange={handleOnChange}
 				/>
-				<span className="or">OR</span>
-				<button
-					className="captureImage btn-upload"
-					onClick={() => setShowCamera((val) => !val)}
-					style={{
-						backgroundColor: `${theme.mode.secondaryColor}`,
-						color: `${theme.mode.bgColor}`,
-					}}
-				>
-					<i className="fas fa-camera"></i> Capture
-				</button>
 			</div>
 			<div className="mainWrapper">
 				<div className="mainContent p-8">
 					<div className="imageHolder p-4 border-box text-center">
-						<h4 className="p-2 text-2xl underline">Image Preview</h4>
+						<h4 className="p-2 text-2xl underline">Preview</h4>
 						{imageURL && (
 							<img
 								src={imageURL}
@@ -189,12 +189,12 @@ function SelectImage() {
 									color: `${theme.mode.bgColor}`,
 								}}
 							>
-								Predict Mood 🤔
+								Identify Mood 🤔
 							</button>
 						)}
 					</div>
 					<div className="resultsHolder p-4 border-box">
-						<h4 className="text-center p-2 text-2xl underline">Results</h4>
+						<h4 className="text-center p-2 text-2xl underline">Output</h4>
 						{results.length !== 0 && (
 							<div className=" flex flex-col items-center justify-center mt-4">
 								<span className="text-2xl font-bold my-12">
@@ -231,24 +231,24 @@ function SelectImage() {
 						/>
 						<div className="webcam-btns">
 							<button
-								className="btn-upload"
+								className="btn-upload btn-capture"
 								onClick={capture}
 								style={{
 									backgroundColor: `${theme.mode.secondaryColor}`,
 									color: `${theme.mode.bgColor}`,
 								}}
 							>
-								<i className="fas fa-camera"></i> Capture
+								<i className="fas fa-camera"></i>
 							</button>
 							<button
-								className="btn-upload"
+								className="btn-upload btn-close-capture"
 								onClick={() => setShowCamera((val) => !val)}
 								style={{
 									backgroundColor: `${theme.mode.secondaryColor}`,
 									color: `${theme.mode.bgColor}`,
 								}}
 							>
-								<i className="fas fa-times"></i> Close
+								<i className="fas fa-times"></i>
 							</button>
 						</div>
 					</div>
